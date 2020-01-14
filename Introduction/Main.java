@@ -1,6 +1,7 @@
 public class Main {
   public static void main(String[] args){
-    Measurable aSquare, aColoredSquare;
+    Square<Double> aSquare;
+    ColoredSquare<Double> aColoredSquare;
 
     //aSquare = new Measurable(); //ILLEGAL
     aSquare = new Square<Double>(10.0);
@@ -11,17 +12,31 @@ public class Main {
 
     System.out.println(aSquare);
     System.out.println(aColoredSquare);
+    Square<Double>[] shapes; //(1)
+
+    @SuppressWarnings("unchecked")
+    //This cast is OK because the array contains only null values
+    Square<Double>[] temp = (Square<Double>[]) new Square<?>[3];//(2)
+    shapes = temp;
+
+
+    shapes[0] = aSquare; //(3)
+    shapes[1] = aColoredSquare;//(4)
+    shapes[2] = new ColoredSquare<Double>(2.0, "Gold"); //(5)
+
+    Measurable result = getMin(shapes);
+    System.out.println(result);
 
   }
 
-  private Measurable getMin(Measurable[] shapes){
-    Measurable result = null;
-    if(shapes.length > 0){
-      result = shapes[0];
-      for(Measurable m: shapes){
+  private static <T extends Comparable<T>> T getMin(T[] items){
+    T result = null;
+    if(items.length > 0){
+      result = items[0];
+      for(T m: items){
         if(m.compareTo(result) < 0){
           result = m;
-        }        
+        }
       }
     }
     return result;
