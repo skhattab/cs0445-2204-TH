@@ -1,5 +1,5 @@
 /**
-  * An interface for a bag of items
+  * An interface for a bag (multiset) of items
   */
 
 public interface BagInterface<T>  {
@@ -16,6 +16,11 @@ public interface BagInterface<T>  {
     */
   public T remove(T item);
 
+  /** Removes an arbitrary item from the Bag
+    * @return the removed item, or null if the bag is empty
+    */
+  public T remove();
+
   public int size();
 
   public boolean isEmpty();
@@ -25,5 +30,13 @@ public interface BagInterface<T>  {
   public int getFrequencyOf(T item);
 
   public void clear();
+
+  public T[] toArray();
+
+  public BagInterface<T> intersection(BagInterface<T> anotherBag);
+
+  public BagInterface<T> union(BagInterface<T> anotherBag);
+
+  public BagInterface<T> difference(BagInterface<T> another);
 
 }
