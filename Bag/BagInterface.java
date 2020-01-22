@@ -29,6 +29,8 @@ public interface BagInterface<T>  {
 
   public int getFrequencyOf(T item);
 
+  public boolean contains(T item);
+
   public void clear();
 
   public T[] toArray();
