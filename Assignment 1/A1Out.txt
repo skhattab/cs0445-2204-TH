@@ -1,0 +1,82 @@
+0 appended to sequence
+2 appended to sequence
+4 appended to sequence
+6 appended to sequence
+8 appended to sequence
+02468
+0 item(s) in the sequence.
+0 prefixed to sequence
+2 prefixed to sequence
+4 prefixed to sequence
+6 prefixed to sequence
+8 prefixed to sequence
+86420
+86420
+0 added to sequence
+2 added to sequence
+4 added to sequence
+6 added to sequence
+8 added to sequence
+02468
+0 retrieved from sequence
+2 retrieved from sequence
+4 retrieved from sequence
+6 retrieved from sequence
+8 retrieved from sequence
+Nothing in the sequence
+0 retrieved from sequence
+2 retrieved from sequence
+4 retrieved from sequence
+6 retrieved from sequence
+8 retrieved from sequence
+Nothing in the sequence
+Adding Item 0
+Adding Item 1
+Removing Item 1
+Adding Item 2
+Removing Item 2
+Adding Item 3
+Removing Item 3
+Adding Item 4
+Removing Item 4
+Adding Item 5
+Removing Item 5
+Adding Item 6
+Removing Item 6
+Adding Item 7
+Removing Item 7
+Adding Item 8
+Removing Item 8
+1 item(s) in the sequence.
+data structures are fun
+The index of s in the alphabet is: 19
+Character at index 10 is t
+First occurrence of s is at position 5
+The letter following the occurrence of s at position 5 is t
+The letter preceding the occurrence of t at position 2 is a
+The letter r is a predecessor of u: true
+The letter r is a predecessor of t: false
+data structures are fun has a subsequence of tures aref: false
+data structures are fun has a subsequence of fun: true
+
+About to test Reorder methods
+Prefixing 0
+Prefixing 1
+Prefixing 2
+Prefixing 3
+Prefixing 4
+Prefixing 5
+Prefixing 6
+Prefixing 7
+76543210
+Reversing
+01234567
+Removing 3 items then appending 1
+012348
+Reversing
+843210
+Rotating right
+084321
+Rotating left twice
+432108
+The size of the sequence is 100000
