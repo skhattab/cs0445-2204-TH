@@ -66,6 +66,7 @@ public class LinkedBag<T> implements BagInterface<T>{
     return false;
   }
 
+  //runtime = 3 + 3n + x (x is the frequency)
   public int getFrequencyOf(T item){
     int result = 0;
     Node current = firstNode;
@@ -142,5 +143,11 @@ public class LinkedBag<T> implements BagInterface<T>{
       this.next = next;
     }
   }
+
+  /*
+    for(int i=n; i>0; i = i/2 ){
+
+    }
+  */
 
 }
