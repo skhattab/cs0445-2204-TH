@@ -55,6 +55,9 @@ public class ArrayDS<T> implements SequenceInterface<T>, ReorderInterface {
 	 * @return the deleted item or null if the sequence is empty
 	 */
 	public T deleteHead(){
+    if(isEmpty()){
+      throw new EmptySequenceException("Attempting to delete from an empty seuquence.");
+    }
     return null;
   }
 
