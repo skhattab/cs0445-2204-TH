@@ -63,6 +63,11 @@ public final class ArrayStack<T>
         while(!isEmpty()){
           pop();
         }
+
+        // int size = size();
+        // for(int i=0; i<size; i++){
+        //   pop();
+        // }
       }
 
       private void checkCapacity(int capacity){
