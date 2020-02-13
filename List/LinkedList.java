@@ -25,18 +25,22 @@ public class LinkedList<T> implements ListInterface<T> {
   public T remove(int position){
     T result = null;
     checkPosition(position);
-    //TODO: Edge cases
-    Node before = referenceTo(position-1);
-    Node at = before.next;
-    result = at.data;
-    before.next = at.next;
+    if(position == 0){
+      result = firstNode.data;
+      firstNode = firstNode.next;
+    } else {
+      Node before = referenceTo(position-1);
+      Node at = before.next;
+      result = at.data;
+      before.next = at.next;
+    }
     size--;
-
     return result;
   }
 
   public T itemAt(int position){
-    return null;
+    checkPosition(position);
+    return referenceTo(position).data;
   }
 
   private Node referenceTo(int position){
