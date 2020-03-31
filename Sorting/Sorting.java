@@ -5,18 +5,19 @@ public class Sorting{
   }
 
   public Sorting(){
-    Integer[] array = new Integer[]{20, 10, 0, 30, 15, 1, 2, 90, 9, 35, -1, 3};
+    Integer[] array = new Integer[]{20, 10, 0, 30, 15, 1, 2, 90, 9, 35, -1, 3, 15, 4, -4, 0};
     //selectionSort(array);
     //insertionSort(array);
     //ShellSort(array);
     //recursiveInsertionSort(array, 0, array.length-1);
-    //recursiveSelectionSort(array, 0, array.length-1);
     //recursiveSelectionSort2(array, 0, array.length-1);
-    //System.out.println(Arrays.toString(array));
+    mergeSort(array);
+    System.out.println(Arrays.toString(array));
 
-    Node<Integer> firstNode = createChain(array);
-    firstNode = chainInsertionSort(firstNode);
-    printChain(firstNode);
+    //recursiveSelectionSort(array, 0, array.length-1);
+    // Node<Integer> firstNode = createChain(array);
+    // firstNode = chainInsertionSort(firstNode);
+    // printChain(firstNode);
   }
   /* ==============*/
   /* Selection Sort*/
@@ -77,7 +78,7 @@ public class Sorting{
     if(last - first + 1 > 1){
       int largestIndex = getIndexOfLargest(array, first, last);
       swap(array, last, largestIndex);
-      recursiveSelectionSort(array, first, last-1);
+      recursiveSelectionSort2(array, first, last-1);
     }
   }
 
@@ -230,5 +231,63 @@ public class Sorting{
     }
   }
 
+  /*******************/
+  /* MergeSort       /
+  /*****************/
 
+  public <T extends Comparable<? super T>>
+    void mergeSort(T[] a){
+      @SuppressWarnings("unchecked")
+      T[] output = (T[]) new Comparable<?>[a.length];
+
+      mergeSort(a, 0, a.length-1, output);
+    }
+
+  private <T extends Comparable<? super T>>
+    void mergeSort(T[] a, int first, int last, T[] output){
+      if(last - first > 0){
+        //int mid = (first + last)/2; <= may cause overflow
+        int mid = first + (last-first)/2;
+        mergeSort(a, first, mid, output);
+        mergeSort(a, mid+1, last, output);
+        if(a[mid].compareTo(a[mid+1]) > 0){
+          merge(a, first, mid, last, output);
+        }
+      }
+    }
+
+  private <T extends Comparable<? super T>>
+    void merge(T[] a, int first, int mid, int last, T[] output){
+      // @SuppressWarnings("unchecked")
+      // T[] output = (T[])new Object[last - first + 1];
+
+      int i = first;
+      int j = mid+1;
+      int k = first;
+      while(i <= mid && j <= last){
+        if(a[i].compareTo(a[j]) <= 0){
+          output[k] = a[i];
+          i++;
+        } else {
+          output[k] = a[j];
+          j++;
+        }
+        k++;
+      }
+
+      //copy any remaining items down to the output array
+      while(i <= mid){
+        output[k] = a[i];
+        k++;
+        i++;
+      }
+      while(j <= last){
+        output[k] = a[j];
+        k++;
+        j++;
+      }
+      for(int index = first; index <= last; index++){
+        a[index] = output[index];
+      }
+    }
 }
