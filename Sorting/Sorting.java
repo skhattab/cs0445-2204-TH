@@ -1,5 +1,7 @@
 import java.util.Arrays;
 public class Sorting{
+
+  private static final int MIN_SIZE = 5;
   public static void main(String[] args){
     new Sorting();
   }
@@ -11,7 +13,10 @@ public class Sorting{
     //ShellSort(array);
     //recursiveInsertionSort(array, 0, array.length-1);
     //recursiveSelectionSort2(array, 0, array.length-1);
-    mergeSort(array);
+    //mergeSort(array);
+    //quickSort(array, 0, array.length-1);
+    iterativeQuickSort(array, 0, array.length-1);
+
     System.out.println(Arrays.toString(array));
 
     //recursiveSelectionSort(array, 0, array.length-1);
@@ -290,4 +295,86 @@ public class Sorting{
         a[index] = output[index];
       }
     }
+
+    private <T extends Comparable<? super T>>
+      void quickSort(T[] a, int first, int last){
+        if(last - first + 1 > MIN_SIZE){
+          int pivotIndex = partition(a, first, last);
+          quickSort(a, first, pivotIndex-1);
+          quickSort(a, pivotIndex+1, last);
+        } else {
+          insertionSort(a, first, last);
+        }
+      }
+
+    private <T extends Comparable<? super T>>
+      int partition(T[] a, int first, int last){
+        int mid = first + (last - first)/2;
+        sortThreeElements(a, first, mid, last);
+        int pivotIndex = mid;
+        T pivotValue = a[mid];
+        swap(a, mid, last-1);
+        int i =  first+1;
+        int j = last - 2;
+        boolean done = false;
+        while(!done){
+          while(a[i].compareTo(pivotValue) < 0){
+            i++;
+          }
+
+          while(a[j].compareTo(pivotValue) > 0){
+            j--;
+          }
+
+          if(j < i){
+            done = true;
+          } else {
+            swap(a, i, j);
+            i++;
+            j--;
+          }
+        }
+        swap(a, i, last-1);
+        pivotIndex = i;
+        return pivotIndex;
+      }
+
+      private <T extends Comparable<? super T>>
+        void sortThreeElements(T[] a, int first, int mid, int last){
+          if(a[first].compareTo(a[mid]) > 0){
+            swap(a, first, mid);
+          }
+          if(a[mid].compareTo(a[last]) > 0){
+            swap(a, mid, last);
+          }
+          if(a[first].compareTo(a[mid]) > 0){
+            swap(a, first, mid);
+          }
+        }
+
+      private <T extends Comparable<? super T>>
+        void iterativeQuickSort(T[] a, int first, int last){
+          while(last - first + 1 > MIN_SIZE){
+            int pivotIndex = partition(a, first, last);
+            if((pivotIndex - 1 - first + 1) <= //size of first partition
+                    (last - (pivotIndex+1) + 1)) //size of second partition)
+            {
+              quickSort(a, first, pivotIndex-1);
+              //quickSort(a, pivotIndex+1, last);
+              //param = argument
+              //a = a; <== TRIVIAL
+              first = pivotIndex + 1;
+              //last = last; <== TRIVIAL
+            } else {
+              //quickSort(a, first, pivotIndex-1);
+              //param = argument
+              //a = a; <== TRIVIAL
+              //first = first; <== TRIVIAL
+              last = pivotIndex - 1; 
+              quickSort(a, pivotIndex+1, last);
+            }
+          }
+          insertionSort(a, first, last);
+        }
+
 }
