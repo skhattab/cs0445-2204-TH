@@ -42,7 +42,7 @@ public class Sorting{
     T smallest = array[first];
     int indexOfSmallest = first;
     for(int i=first+1; i<=last; i++){
-      if(array[i].compareTo(smallest) < 0){
+      if(array[i].compareTo(smallest) < 0){ // (<=) makes it unstable sort
         smallest = array[i];
         indexOfSmallest = i;
       }
@@ -55,7 +55,7 @@ public class Sorting{
     T largest = array[first];
     int indexOfLargest = first;
     for(int i=first+1; i<=last; i++){
-      if(array[i].compareTo(largest) > 0){
+      if(array[i].compareTo(largest) >= 0){ // (>) makes it unstable sort
         largest = array[i];
         indexOfLargest = i;
       }
@@ -106,7 +106,7 @@ public class Sorting{
   private <T extends Comparable<? super T>>
   void insertInOrder(T[] array, int begin, int end, T item){
     int index = end;
-    while(index >= begin && array[index].compareTo(item)>0){
+    while(index >= begin && array[index].compareTo(item)>0){ //(>=) makes it unstable sort
       array[index+1] = array[index];
       index--;
     }
@@ -123,7 +123,7 @@ public class Sorting{
 
   private <T extends Comparable<? super T>>
   void recursiveInsertInOrder(T[] array, int begin, int end, T item){
-    if(item.compareTo(array[end]) >= 0){
+    if(item.compareTo(array[end]) >= 0){ // (>) makes it unstable sort
       array[end+1] = item;
     } else if(begin == end){
       array[end+1] = array[end];
@@ -370,7 +370,7 @@ public class Sorting{
               //param = argument
               //a = a; <== TRIVIAL
               //first = first; <== TRIVIAL
-              last = pivotIndex - 1; 
+              last = pivotIndex - 1;
               quickSort(a, pivotIndex+1, last);
             }
           }
