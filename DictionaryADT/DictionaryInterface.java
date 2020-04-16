@@ -1,6 +1,6 @@
 public interface DictionaryInterface<T>{
 
-  public boolean add(T item);
+  public T add(T item);
 
   public T remove(T item);
 
